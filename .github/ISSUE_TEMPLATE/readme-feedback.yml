@@ -6,7 +6,6 @@ body:
       value: |
         Use this form for feedback about Rot's README front page.
         Please leave out account details, private file paths, raw game payloads, and other personal information.
-        After you submit, you can paste the issue link into your Codex conversation if you want help following up.
 
   - type: dropdown
     id: section
@@ -16,13 +15,14 @@ body:
       options:
         - Overall README flow
         - Get started
-        - Built around a training session
-        - Choose videos in your normal browser
-        - Default shortcuts
-        - Know the limits
-        - Privacy
-        - Build or contribute
-        - License and acknowledgments
+        - Make training easier
+        - YouTube and browser limits
+        - Know before installing
+        - Privacy and validation
+        - Get help or contribute
+        - Keyboard shortcuts
+        - Build from source
+        - Images and illustrations
       default: 0
     validations:
       required: true

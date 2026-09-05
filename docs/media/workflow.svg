@@ -1,31 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="220" viewBox="0 0 1080 220" role="img" aria-labelledby="title desc">
-  <title id="title">Rot follows your training session</title>
-  <desc id="desc">Watch a video in Free Play. The player pauses and hides as training ends. Return to verified training to resume.</desc>
-  <rect width="1080" height="220" rx="20" fill="#111113"/>
-  <g fill="none" stroke="#414145" stroke-width="2">
-    <path d="M337 110h49m-9-8 9 8-9 8M696 110h49m-9-8 9 8-9 8"/>
-  </g>
-  <g font-family="Segoe UI,Arial,sans-serif">
-    <g transform="translate(36 37)">
-      <rect x="0" y="0" width="44" height="32" rx="7" fill="#e5383b"/>
-      <path d="m18 8 13 8-13 8z" fill="#fff"/>
-      <text x="0" y="75" fill="#fff" font-size="24" font-weight="700">Watch in Free Play</text>
-      <text x="0" y="109" fill="#babac1" font-size="17">Your video, your window size.</text>
-      <text x="0" y="137" fill="#babac1" font-size="17">Keep training in focus.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="350" viewBox="0 0 600 350" role="img" aria-labelledby="workflow-title workflow-desc" focusable="false">
+  <title id="workflow-title">Illustrative workflow: Rot through verified training</title>
+  <desc id="workflow-desc">Illustrative diagram, not gameplay footage. In verified Rocket League Free Play, watch with game focus. When training ends, Rot pauses, mutes and hides the player. When verified local training returns and the game has focus, Auto-resume, when enabled, resumes playback.</desc>
+
+  <rect width="600" height="350" rx="22" fill="#f4f5f7"/>
+  <rect x="1" y="1" width="598" height="348" rx="21" fill="none" stroke="#d9dde5" stroke-width="2"/>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="24" y="40" fill="#e5383b" font-size="30" font-weight="800">Rot</text>
+    <text x="88" y="39" fill="#5b616b" font-size="22" font-weight="700">Illustrative workflow</text>
+
+    <g transform="translate(24 54)">
+      <rect width="552" height="74" rx="14" fill="#ffffff" stroke="#dfe2e6" stroke-width="2"/>
+      <circle cx="31" cy="37" r="22" fill="#e5383b"/>
+      <text x="31" y="44" text-anchor="middle" fill="#ffffff" font-size="21" font-weight="700">1</text>
+      <text x="70" y="33" fill="#1c2025" font-size="30" font-weight="700">Verified Free Play</text>
+      <text x="70" y="61" fill="#3f4650" font-size="26">Watch with game focus.</text>
     </g>
-    <g transform="translate(397 37)">
-      <rect x="0" y="0" width="44" height="32" rx="7" fill="#2b2b2f"/>
-      <path d="M17 9v14m10-14v14" stroke="#fff" stroke-width="4"/>
-      <text x="0" y="75" fill="#fff" font-size="24" font-weight="700">Match time</text>
-      <text x="0" y="109" fill="#babac1" font-size="17">Rot pauses, mutes and hides</text>
-      <text x="0" y="137" fill="#babac1" font-size="17">as training ends.</text>
+
+    <g fill="none" stroke="#e5383b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" aria-hidden="true">
+      <path d="M300 134v8"/>
+      <path d="m294 138 6 6 6-6"/>
     </g>
-    <g transform="translate(757 37)">
-      <rect x="0" y="0" width="44" height="32" rx="7" fill="#2b2b2f"/>
-      <path d="M30 17a9 9 0 1 1-4-8m0-4v8h8" fill="none" stroke="#fff" stroke-width="2"/>
-      <text x="0" y="75" fill="#fff" font-size="24" font-weight="700">Back to training</text>
-      <text x="0" y="109" fill="#babac1" font-size="17">Verified Free Play and game</text>
-      <text x="0" y="137" fill="#babac1" font-size="17">focus let playback resume.</text>
+
+    <g transform="translate(24 150)">
+      <rect width="552" height="74" rx="14" fill="#ffffff" stroke="#dfe2e6" stroke-width="2"/>
+      <circle cx="31" cy="37" r="22" fill="#252a31"/>
+      <path d="M25 27v20m12-20v20" stroke="#ffffff" stroke-linecap="round" stroke-width="4"/>
+      <text x="70" y="33" fill="#1c2025" font-size="30" font-weight="700">Training ends</text>
+      <text x="70" y="61" fill="#3f4650" font-size="26">Pause, mute and hide.</text>
+    </g>
+
+    <g fill="none" stroke="#e5383b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" aria-hidden="true">
+      <path d="M300 230v8"/>
+      <path d="m294 234 6 6 6-6"/>
+    </g>
+
+    <g transform="translate(24 246)">
+      <rect width="552" height="74" rx="14" fill="#ffffff" stroke="#dfe2e6" stroke-width="2"/>
+      <circle cx="31" cy="37" r="22" fill="#e5383b"/>
+      <path d="M39 28a10 10 0 1 0 2 9m-2-15v7h7" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <text x="70" y="33" fill="#1c2025" font-size="30" font-weight="700">Training returns</text>
+      <text x="70" y="61" fill="#3f4650" font-size="26">Auto-resume when enabled.</text>
     </g>
   </g>
 </svg>
