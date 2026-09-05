@@ -21,6 +21,25 @@ public repository because game payloads can contain player information.
 
 ## Lifecycle evidence
 
+### Why retain the Stats API?
+
+The basic YouTube player does not need Stats data. Rot already allows manual
+playback while detection is disconnected and Rocket League has focus. Process
+and foreground checks still identify the game window, but cannot distinguish
+Free Play, a transition, and an online match within that same window.
+
+Stats events supply that distinction. Removing them would lose automatic
+pause/hide at training exit, online-state playback blocking, verified training
+resume, and the verified-training gate for queued browser-extension videos.
+Treating a focused game window as verified training would change those guarantees.
+
+Retain the receive-only Stats integration and the existing manual fallback. An
+explicit manual-only mode could avoid configuring Stats, but would be a separate
+product choice with different behavior. No replacement signal has been implemented
+and validated to preserve the current automatic behavior.
+
+### State classification
+
 The five states are Disconnected, ConnectedIdle, Local, Transition and Online.
 A socket connection alone does not establish training. A populated match GUID is
 online evidence. Empty MatchInitialized or RoundStarted establish local training.

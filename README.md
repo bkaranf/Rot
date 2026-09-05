@@ -22,7 +22,8 @@
 </p>
 
 Rot is an open-source Windows app for watching videos during Rocket League
-training. It reads Rocket League's local Stats API for training state. Playback
+training. It reads Rocket League's [local Stats API](DECISIONS.md#why-retain-the-stats-api)
+for training state. Playback
 uses an ordinary desktop window and does not inject into the game.
 
 ## Get started
@@ -74,8 +75,8 @@ the Player.
 </details>
 
 <p align="center">
-  <img src="docs/media/settings.jpg" width="360" alt="Rot desktop Settings with playback, appearance and window controls">
-  <br><em>The actual Rot Settings window on Windows. Your layout and preferences may differ.</em>
+  <img src="docs/media/settings-preview-2x.jpg" width="360" alt="Rot Settings interface with playback, appearance and window controls">
+  <br><em>Settings interface captured from Rot's UI source at 2× resolution. Shown with default preferences.</em>
 </p>
 
 ## YouTube and browser limits
