@@ -11,6 +11,10 @@ The following local checks passed on September 5, 2026:
   one Rot instance. The existing preferences file, including all three saved
   window placements, remained byte-for-byte unchanged after the update.
 - Actual desktop Settings showed version 2.1.0 and the compiled source revision.
+- The shipped ZIP was extracted and launched. Its build identity matched the
+  reviewed release commit, and a live update check reported that Rot was up to date.
+- Both public release downloads were fetched without authentication and matched
+  the approved SHA-256 digests.
 - Browser Settings checks covered a 390-pixel narrow viewport and a 1440-pixel
   desktop viewport, shortcut capture focus, manual update feedback and overflow.
 
@@ -55,6 +59,9 @@ game version. Raw payloads, personal paths and private recordings are not publis
 
 - The new release still needs broader community testing across Windows builds,
   displays, DPI changes, GPU drivers and browser versions.
+- Actual Chrome/Edge extension installation was not exercised in this release
+  session. Protocol, forwarding, permissions and installation-script dry runs were
+  checked; browser setup remains a manual validation step.
 - No anti-cheat certification is claimed. Rot uses ordinary external windows.
 - YouTube playback, ads, sign-in restrictions, embedding failures and network
   availability depend on external services.

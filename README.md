@@ -127,8 +127,10 @@ memory, capture the game screen, simulate input or modify YouTube pages.
 
 ## Build or contribute
 
-Install the .NET SDK specified in [global.json](global.json) and Node.js 22 or later.
-On Windows, from the repository root:
+First clone or download the [source repository](https://github.com/bkaranf/Rot).
+The portable ZIP contains the ready-to-run app, not the source build tools.
+Install the .NET SDK specified in [global.json](https://github.com/bkaranf/Rot/blob/main/global.json)
+and Node.js 22 or later. On Windows, from the source repository root:
 
 ```powershell
 dotnet restore Rot.sln

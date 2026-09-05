@@ -117,26 +117,48 @@ public sealed class NativeMessageProtocolTests
 
     private static string FindBrowserHostExecutable()
     {
-        for (var directory = new DirectoryInfo(AppContext.BaseDirectory);
-             directory is not null;
-             directory = directory.Parent)
+        DirectoryInfo? binDirectory = new(AppContext.BaseDirectory);
+        while (binDirectory is not null &&
+               !string.Equals(binDirectory.Name, "bin", StringComparison.OrdinalIgnoreCase))
         {
-            foreach (var configuration in new[] { "Debug", "Release" })
-            {
-                var candidate = Path.Combine(
-                    directory.FullName,
-                    "src",
-                    "Rot.BrowserHost",
-                    "bin",
-                    configuration,
-                    "net10.0-windows",
-                    "win-x64",
-                    "Rot.BrowserHost.exe");
-                if (File.Exists(candidate)) return candidate;
-            }
+            binDirectory = binDirectory.Parent;
         }
 
-        throw new FileNotFoundException("The self-contained browser host executable was not built.");
+        if (binDirectory is null)
+        {
+            throw new DirectoryNotFoundException(
+                $"Could not derive the test output bin directory from '{AppContext.BaseDirectory}'.");
+        }
+
+        var outputSubpath = Path.GetRelativePath(binDirectory.FullName, AppContext.BaseDirectory);
+        if (string.IsNullOrWhiteSpace(outputSubpath) || outputSubpath == ".")
+        {
+            throw new DirectoryNotFoundException(
+                $"Could not derive the test configuration from '{AppContext.BaseDirectory}'.");
+        }
+
+        var repositoryDirectory = binDirectory.Parent?.Parent?.Parent;
+        if (repositoryDirectory is null)
+        {
+            throw new DirectoryNotFoundException(
+                $"Could not derive the repository directory from '{binDirectory.FullName}'.");
+        }
+
+        var candidate = Path.Combine(
+            repositoryDirectory.FullName,
+            "src",
+            "Rot.BrowserHost",
+            "bin",
+            outputSubpath,
+            "Rot.BrowserHost.exe");
+        if (File.Exists(candidate))
+        {
+            return candidate;
+        }
+
+        throw new FileNotFoundException(
+            $"The self-contained browser host executable was not built at '{candidate}'.",
+            candidate);
     }
 
     private sealed record NativeHostResult(
