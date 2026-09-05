@@ -1,0 +1,53 @@
+name: Comment on the README
+description: Suggest a correction or improvement to Rot's front page.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for feedback about Rot's README front page.
+        Please leave out account details, private file paths, raw game payloads, and other personal information.
+        After you submit, you can paste the issue link into your Codex conversation if you want help following up.
+
+  - type: dropdown
+    id: section
+    attributes:
+      label: README section
+      description: Which part of the front page should change?
+      options:
+        - Overall README flow
+        - Get started
+        - Built around a training session
+        - Choose videos in your normal browser
+        - Default shortcuts
+        - Know the limits
+        - Privacy
+        - Build or contribute
+        - License and acknowledgments
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Feedback or requested change
+      description: What is unclear, incorrect, missing, or hard to use? Include exact replacement wording when useful. Add a screenshot below if it helps.
+      placeholder: Describe the problem and the change that would help.
+    validations:
+      required: true
+
+  - type: upload
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Optional. Upload a screenshot from your phone that shows the README text or layout you mean.
+    validations:
+      required: false
+      accept: ".png,.jpg,.jpeg,.gif,.webp,.svg"
+
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Quoted text or screenshot details
+      description: Optional. Paste the exact README wording or explain what a screenshot shows.
+      placeholder: Paste a short quote or add context for an attached image.

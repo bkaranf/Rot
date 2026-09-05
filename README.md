@@ -15,7 +15,8 @@
   <a href="https://github.com/bkaranf/Rot/releases/latest/download/Rot-win-x64.zip"><strong>Download for Windows</strong></a> ·
   <a href="#get-started">Get started</a> ·
   <a href="docs/TROUBLESHOOTING.md">Troubleshooting</a> ·
-  <a href="https://github.com/bkaranf/Rot/releases">Release notes</a>
+  <a href="https://github.com/bkaranf/Rot/releases">Release notes</a> ·
+  <a href="https://github.com/bkaranf/Rot/issues/new?template=readme-feedback.yml">Give feedback</a>
 </p>
 
 ![Rot's training workflow: watch in Free Play, pause and hide for a match, resume in training.](docs/media/workflow.svg)
