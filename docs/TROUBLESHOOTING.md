@@ -52,10 +52,13 @@ training evidence and current game and focus checks.
 
 ## A shortcut does not work
 
-Open **Help > Keyboard shortcuts**. Select its current binding, press a new chord,
-and choose **Apply**. Use Ctrl, Alt or Win plus another supported key. Rot rejects
-duplicates and reports conflicts with other applications. **Restore defaults**
-resets the seven shortcuts together.
+In Settings, open **Help > Keyboard shortcuts**. If a shortcut row reports a
+conflict, for example `Cycle player opacity (Ctrl+Shift+O): Hot key is already
+registered`, select the affected binding (`Unavailable` in this example), press
+a new supported chord, and choose **Apply**. Use Ctrl, Alt or Win plus another
+supported key.
+Rot rejects duplicates and reports conflicts with other applications. **Restore
+defaults** resets the seven shortcuts together.
 
 If click-through is enabled and its recovery shortcut is unavailable, use Settings
 from the tray and turn **Click through Player** off. Settings remains interactive.
