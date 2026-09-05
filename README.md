@@ -37,6 +37,8 @@ The portable download includes .NET 10, so you do not need the SDK.
    and extract the entire ZIP into a folder you can write to.
 2. Close Rocket League for first setup, then run **Rot.exe**.
 3. Launch Rocket League normally and enter **Play > Training > Free Play**.
+   Choose the first local **Free Play** option, select an arena, and choose
+   **Accept**; the menu also lists **Create Online Free Play** and **Join Online Free Play**.
 4. Press **Ctrl+Shift+F** to open Browse and choose a YouTube video.
 
 Expected result: in focused, verified Free Play, the video plays in the Rot
@@ -58,7 +60,8 @@ Settings works with the game closed, and launching Rot again opens it.
 - **Keep control:** click-through lets input reach the game, while shortcuts and
   tray Settings restore control when you need it.
 - **Start from your normal browser:** the optional [Send to Rot extension](browser-extension/README.md)
-  sends a YouTube address and waits for verified training and Rocket League focus.
+  sends a YouTube address and loads it after verified training and Rocket League focus.
+  Requires Rot 2.1.1 or later. If you tried 2.1.0, follow [the recovery steps](docs/TROUBLESHOOTING.md#native-host-registration-fails).
 
 Browse and Settings accept keyboard and mouse input, while the Player never takes
 keyboard focus. Browse is always muted. Switching to another app pauses and hides
@@ -96,7 +99,7 @@ the Player's **Open on YouTube** action. YouTube controls ads and video quality.
   connection active without changing the last recognized state. See
   [how detection works](docs/TROUBLESHOOTING.md#detection-is-disconnected-or-needs-repair).
 - With Rocket League focused, Player shortcuts still allow manual playback while
-  detection is disconnected or waiting for verified training. This fallback does
+  detection is disconnected or before verified training. This fallback does
   not verify training. When online play is detected, **Show or hide Player** can
   reveal only a paused, muted warning.
 - Rot is not an anti-cheat certification and does not promise compatibility with

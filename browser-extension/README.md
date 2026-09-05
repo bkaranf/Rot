@@ -1,14 +1,21 @@
 # Send to Rot
 
 Choose a YouTube video in your signed-in Chrome or Edge browser and send its
-address to Rot. The Player waits for verified local training and Rocket League
-focus before loading the selection. Sending another video replaces the pending
-selection.
+address to Rot. The Player loads the selection after local training is verified
+and Rocket League has focus. Sending another video replaces the pending selection.
 
 ## Install
 
-1. Download and extract the whole [Rot portable release](https://github.com/bkaranf/Rot/releases/latest).
-   Keep it in a stable, user-writable folder.
+Requires Rot 2.1.1 or later. If you tried 2.1.0, see [the recovery steps](../docs/TROUBLESHOOTING.md#native-host-registration-fails).
+
+Use matching files from one Rot release. `Rot-win-x64.zip` contains the
+portable app, native host, registration scripts, and `browser-extension`.
+`Send-to-Rot.zip` contains the extension files only; it does not replace the
+native host in the portable app.
+
+1. Download [Rot-win-x64.zip](https://github.com/bkaranf/Rot/releases/latest/download/Rot-win-x64.zip)
+   and extract the whole `Rot-win-x64` folder into a stable, user-writable
+   folder. Keep its `browser-extension` folder beside `Rot.exe`.
 2. Open PowerShell in that extracted `Rot-win-x64` folder and run:
 
    ```powershell
@@ -18,6 +25,16 @@ selection.
    This registers a native messaging host for your Windows user in Chrome and
    Edge. No administrator access is needed. Add `-Browser Chrome` or
    `-Browser Edge` to register only one browser. Add `-WhatIf` to preview changes.
+
+   A successful run prints `HostName`, `ExtensionId`, `ManifestPath`, and
+   `Browsers`. Confirm the manifest was created before continuing:
+
+   ```powershell
+   Test-Path -LiteralPath (Join-Path $env:LOCALAPPDATA 'Rot\BrowserHost\com.rot.send_to_rot.json') -PathType Leaf
+   ```
+
+   The result must be `True`. If the command fails or returns `False`, stop and
+   use [the native-host troubleshooting steps](../docs/TROUBLESHOOTING.md#native-host-registration-fails).
 3. Open `chrome://extensions` or `edge://extensions`, enable **Developer mode**,
    choose **Load unpacked**, and select the extracted `browser-extension` folder.
 4. Pin **Send to Rot** from the browser's extensions menu.

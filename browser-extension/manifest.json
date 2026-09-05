@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Send to Rot",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Send the selected YouTube video to the running Rot player.",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA11Mk6ogiYXzOk5MVdLRT3g9+MR/0ScNC16uhyvCcPQL4cFbtpFYMA71rKmS0r1eiFwNdDqeD47CzYN57h2WMGdg3d8hvjGhosJ+5FASy8FBawR2Lex3wYCDain0+CvIKCnl9IKXXv1zhZVDuAHpQwC94FKGLQ+5krvsNI8wkOWv8KqhJlS0JXZQS/zNiZHVZOBrTo3qGp4F8Uhp5MUsVL9Jh82F2PbLoHkggqdS7yeLIz+DYxu6CySrGK/C2sdw+Elzltehy4VDBqP517gaHQvsewAuALN+hC3yVMGgM77QxPU3hK51HxBEWg6Pkflfl+szAUH9IdgRo5Pa6Hn2AgQIDAQAB",
   "permissions": [

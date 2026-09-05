@@ -1,5 +1,13 @@
 # Validation
 
+## Release records
+
+The observations below record version 2.1.0. For later versions, see the
+[versioned release notes](https://github.com/bkaranf/Rot/releases), which identify
+the tested build and distinguish automated checks from live application checks.
+
+## Version 2.1.0
+
 Rot 2.1.0 was checked on Windows with .NET SDK 10.0.400 and WebView2 Evergreen.
 The following local checks passed on September 5, 2026:
 
@@ -59,7 +67,7 @@ game version. Raw payloads, personal paths and private recordings are not publis
 
 ## Limits
 
-- The new release still needs broader community testing across Windows builds,
+- Version 2.1.0 still needs broader community testing across Windows builds,
   displays, DPI changes, GPU drivers and browser versions.
 - Actual Chrome/Edge extension installation was not exercised in this release
   session. Protocol, forwarding, permissions and installation-script dry runs were

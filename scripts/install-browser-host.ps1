@@ -87,7 +87,13 @@ $hostManifest = [ordered]@{
 }
 
 if ($PSCmdlet.ShouldProcess($manifestPath, "Write native messaging host manifest")) {
-    New-Item -Path (Split-Path -Parent $manifestPath) -Force | Out-Null
+    $manifestDirectoryPath = Split-Path -Parent $manifestPath
+    if (Test-Path -LiteralPath $manifestDirectoryPath -PathType Leaf) {
+        throw "Native messaging manifest directory path is an existing file: $manifestDirectoryPath. Move it aside or choose another -ManifestDirectory path."
+    }
+    if (-not (Test-Path -LiteralPath $manifestDirectoryPath -PathType Container)) {
+        New-Item -Path $manifestDirectoryPath -ItemType Directory -Force | Out-Null
+    }
     $manifestJson = $hostManifest | ConvertTo-Json -Depth 3
     [IO.File]::WriteAllText($manifestPath, $manifestJson, [Text.UTF8Encoding]::new($false))
 }
