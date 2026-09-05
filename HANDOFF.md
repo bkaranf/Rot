@@ -1,67 +1,91 @@
 # Rot public launch handoff
 
-Status: all five proposals are implemented and local verification has passed. Nothing from this
-launch has been pushed publicly yet.
+All five proposals are implemented, publicly released and verified. Rot 2.1.0 is
+running locally with the user's preferences preserved. GitHub CI is green.
 
-The user authorized all five proposals, a researched GitHub front page and marketing
-strategy, then a public repository and downloadable release under bkaranf/Rot.
-No external community messages are authorized.
-
-## Current review gate
+## Review
 
 Lead and orchestrator: native GPT-6 Astra, ultra.
 Execution workers: native GPT-5.6 Luna, max.
 Independent final reviewer: native GPT-6 Astra, max.
 
-The user replaced the earlier Sol reviewer with Astra max during integration.
-The Astra reviewer must inspect the final candidate and pass it before publication.
-The existing goal remains active; this reviewer assignment supersedes its original
-Sol wording. No custom model routing overrides are used.
+The user replaced the original Sol assignment with Astra max. Astra issued a
+publication PASS with no unresolved P0/P1/P2 findings for release commit
+`f6a2836c5f5cb5e087644a10966b82fa7e318f0c` and the assets below. The original goal's
+reviewer wording is superseded by that user instruction.
 
 ## Implemented proposals
 
-1. Serialized Settings transactions preserve committed values on failed saves,
-   including size/layout, concurrent placement/resume changes and shutdown.
-   Section feedback handles overlapping saves.
-2. Receive-only Stats inactivity detection and bounded WebView process recovery.
-   Recovery preserves game classification and requires fresh Local/current-process
-   evidence, fresh bridge readiness and the existing focus gate. Player callback
-   races and pause/mute failures have behavior tests.
-3. Editable shortcuts, validation, conflicts, registration rollback, truthful
-   availability and active Settings capture. Healthy custom startup bindings survive
-   another shortcut's conflict.
+1. Settings transactions preserve committed preferences and runtime behavior after
+   failed saves, including size/layout and concurrent placement/resume changes.
+2. Stats inactivity and WebView process failures recover with bounded retries,
+   current bridge readiness and fresh training evidence. Player lifecycle races
+   have regression coverage. Existing process and focus gates remain in force.
+3. Shortcuts can be edited and reset, with validation, native conflict feedback,
+   rollback and active Settings capture. Unknown saved actions are not registered.
 4. .NET 10 LTS, real build identity, repeat-launch Settings forwarding and explicit
-   staged updates. The old app waits for a prepared candidate before closing. New
-   startup readiness gates success; failed startup restores the previous folder.
-5. Minimal-permission Send to Rot extension and native messaging. Only a selected
-   YouTube address transfers. One pending selection waits for verified training and
-   focus. Native messaging registration remains outside the install folder.
+   staged updates. A prepared candidate and startup readiness gate replacement;
+   failed startup restores the previous install. Preferences stay outside it.
+5. The optional Send to Rot extension passes a YouTube address through current-user
+   native messaging. The selection waits for verified training and focus. Google
+   sign-in, cookies and Premium status do not transfer into Rot.
 
-Public README, architecture decisions, troubleshooting, privacy, contribution,
-license, component notices, issue templates and CI are being completed. The launch
-strategy and verified README research are in docs/LAUNCH.md.
+## Public release
 
-## Verification status
+- Repository: https://github.com/bkaranf/Rot
+- Download and notes: https://github.com/bkaranf/Rot/releases/tag/v2.1.0
+- Release source: `f6a2836c5f5cb5e087644a10966b82fa7e318f0c`
+- License: MIT, with bundled component notices.
+- Default branch: main. Issue templates, contribution guidance and Windows CI are included.
 
-The Release build passed with zero warnings and errors. All 271 app tests, 8 browser-host tests and 41 JavaScript tests passed. The repository contract check passed for 101 source/test files. The actual portable app opened Settings on a repeat launch with exactly one Rot instance. The existing preferences file, including all three window placements, remained byte-for-byte unchanged. Narrow and desktop browser checks passed. The final artifact review, public URLs, hashes and CI results will be recorded after publication.
+| Asset | SHA-256 |
+|---|---|
+| Rot-win-x64.zip | c835ead9d2b733fd493ff7608fe217e27fdaf2d3886a32a99c5e7d0368d07bc1 |
+| Send-to-Rot.zip | 0f1fbf3199abd89e81a16ec302530454deb828f5d08668fb4daf4c03e77ec5a7 |
 
-Owned test windows and temporary WebView profiles are used for failure tests.
-The user's game is not driven, captured or stopped. No new live game cycle is
-active. Prior live observations and their limits are summarized in VALIDATION.md.
+Both packages and SHA256SUMS are attached to the release. Anonymous downloads and
+the README's latest-download link were verified. The release tag and approved
+assets remain unchanged by the subsequent test and documentation corrections.
 
-## Publication plan
+The public repository began from a clean source snapshot. Private development
+history, logs, profiles, recordings, patches and handoff bundles were retained
+locally and excluded from publication. Commit identity uses GitHub noreply email.
+Do not push the original private history into the public repository.
 
-Preserve the local development history and private evidence. Export a clean initial
-public main snapshot containing intended source, tests, docs and assets. Exclude
-private logs, profiles, machine paths, handoff bundles, binaries and historical
-patch series. Build versioned portable artifacts from the public source revision,
-then publish only after the independent Astra gate passes.
+## Verification
 
-Target repository: https://github.com/bkaranf/Rot
-Target release: v2.1.0
-Assets: Rot-win-x64.zip, Send-to-Rot.zip and SHA256SUMS.
+- Local Release build: zero warnings and errors.
+- Native tests: 271 app tests and 8 browser-host tests passed.
+- JavaScript: 41 tests passed. Repository contract check: 101 files passed.
+- Recovery coverage includes browser-process failure, missing page/bridge readiness,
+  timeout, repaired page and successful retry using owned temporary WebViews.
+- The final release ZIP was extracted and started. One current Rot instance remained;
+  a second launch exited successfully and opened the existing desktop Settings.
+- The user's complete preferences file, including all three window placements,
+  remained byte-for-byte unchanged. The actual app showed the release revision.
+- A live update check against the public release returned that Rot was up to date.
+- Browser checks covered narrow and desktop Settings, shortcut focus, update feedback
+  and overflow. Published README visuals and download links were checked.
+- The 523-file portable package contains the app, helpers, web assets and licenses,
+  with no PDBs, user profiles, private evidence or private machine-path markers.
 
-Keep the installed portable folder stable and preserve the user's latest preferences
-and all three window placements when updating the local running build. Verify one
-latest Rot instance, public visibility, downloadable assets, hashes and CI results.
-Only then mark the goal complete.
+Public CI passed on source commit `70e24734d3cb30554413bbcec50a663e1c2390ad`:
+https://github.com/bkaranf/Rot/actions/runs/33951150812
+
+The clean runner passed formatting, build, 271 app tests, 8 browser-host tests,
+41 JavaScript tests, repository contracts and portable publishing. The test-path
+correction selects the executing tests' exact build output; it does not change
+the released runtime. Astra also passed that test/documentation follow-up.
+
+See VALIDATION.md for detailed scope and limits. Actual Chrome/Edge extension
+installation and broader live-game, display and driver coverage remain manual
+validation gaps. No game was driven, captured or stopped by automated checks, and
+no new user-led game test was claimed. No anti-cheat certification is claimed.
+
+## Marketing
+
+The researched README structure, positioning, staged marketing strategy and ready
+launch copy are in docs/LAUNCH.md. The public front page includes an original
+workflow graphic, an actual Settings screenshot, clear setup, features, limitations,
+privacy, help and contribution links. Research sources and dated observations are
+recorded in the strategy. No external community posts or direct messages were sent.

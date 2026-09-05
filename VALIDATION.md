@@ -18,8 +18,10 @@ The following local checks passed on September 5, 2026:
 - Browser Settings checks covered a 390-pixel narrow viewport and a 1440-pixel
   desktop viewport, shortcut capture focus, manual update feedback and overflow.
 
-These are local results. Public CI status is shown in the repository's Actions
-tab. Release assets and checksums are attached to the versioned GitHub release.
+The [public Windows CI run](https://github.com/bkaranf/Rot/actions/runs/33951150812)
+also passed all 279 native tests, 41 JavaScript tests, formatting, build, repository
+contracts and portable publishing on the corrected source-test revision. Release
+assets and checksums are attached to the versioned GitHub release.
 
 ## Automated coverage
 
