@@ -1,0 +1,32 @@
+name: Report a problem
+description: Help reproduce a Rot problem.
+body:
+  - type: markdown
+    attributes:
+      value: Please exclude account details, raw game payloads and private file paths.
+  - type: input
+    id: version
+    attributes:
+      label: Rot version
+      description: Copy the version and build from Settings > About Rot.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Windows and display setup
+      description: Windows version, monitor count, display scaling, and Borderless or Windowed mode.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What did you do, what happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Relevant error or screenshot
+      description: Include only Rot's interface or a short error message. Remove private information.

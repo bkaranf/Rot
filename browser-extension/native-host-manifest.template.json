@@ -1,0 +1,9 @@
+{
+  "name": "com.rot.send_to_rot",
+  "description": "Send YouTube selections to Rot.",
+  "path": "Rot.BrowserHost.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://ajakpkcchbjafafhjbobkaobhgpdikjd/"
+  ]
+}

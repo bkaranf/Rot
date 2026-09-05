@@ -1,0 +1,11 @@
+**/bin/
+**/obj/
+.vs/
+TestResults/
+dist/
+artifacts/
+node_modules/
+validation/*.log
+*.user
+*.suo
+*.log

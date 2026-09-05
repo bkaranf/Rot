@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <AssemblyName>Rot.Updater</AssemblyName>
+    <RootNamespace>Rot.Updater</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="..\Rot.App\Updates\UpdateModels.cs" Link="Updates\UpdateModels.cs" />
+    <Compile Include="..\Rot.App\Updates\UpdatePaths.cs" Link="Updates\UpdatePaths.cs" />
+    <Compile Include="..\Rot.App\Updates\UpdatePackageVerifier.cs" Link="Updates\UpdatePackageVerifier.cs" />
+    <Compile Include="..\Rot.App\Updates\PortableUpdateInstaller.cs" Link="Updates\PortableUpdateInstaller.cs" />
+    <Compile Include="..\Rot.App\Updates\UpdateReadiness.cs" Link="Updates\UpdateReadiness.cs" />
+  </ItemGroup>
+</Project>

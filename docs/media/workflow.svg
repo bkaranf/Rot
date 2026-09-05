@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="220" viewBox="0 0 1080 220" role="img" aria-labelledby="title desc">
+  <title id="title">Rot follows your training session</title>
+  <desc id="desc">Watch a video in Free Play. The player pauses and hides as training ends. Return to verified training to resume.</desc>
+  <rect width="1080" height="220" rx="20" fill="#111113"/>
+  <g fill="none" stroke="#414145" stroke-width="2">
+    <path d="M337 110h49m-9-8 9 8-9 8M696 110h49m-9-8 9 8-9 8"/>
+  </g>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <g transform="translate(36 37)">
+      <rect x="0" y="0" width="44" height="32" rx="7" fill="#e5383b"/>
+      <path d="m18 8 13 8-13 8z" fill="#fff"/>
+      <text x="0" y="75" fill="#fff" font-size="24" font-weight="700">Watch in Free Play</text>
+      <text x="0" y="109" fill="#babac1" font-size="17">Your video, your window size.</text>
+      <text x="0" y="137" fill="#babac1" font-size="17">Keep training in focus.</text>
+    </g>
+    <g transform="translate(397 37)">
+      <rect x="0" y="0" width="44" height="32" rx="7" fill="#2b2b2f"/>
+      <path d="M17 9v14m10-14v14" stroke="#fff" stroke-width="4"/>
+      <text x="0" y="75" fill="#fff" font-size="24" font-weight="700">Match time</text>
+      <text x="0" y="109" fill="#babac1" font-size="17">Rot pauses, mutes and hides</text>
+      <text x="0" y="137" fill="#babac1" font-size="17">as training ends.</text>
+    </g>
+    <g transform="translate(757 37)">
+      <rect x="0" y="0" width="44" height="32" rx="7" fill="#2b2b2f"/>
+      <path d="M30 17a9 9 0 1 1-4-8m0-4v8h8" fill="none" stroke="#fff" stroke-width="2"/>
+      <text x="0" y="75" fill="#fff" font-size="24" font-weight="700">Back to training</text>
+      <text x="0" y="109" fill="#babac1" font-size="17">Verified Free Play and game</text>
+      <text x="0" y="137" fill="#babac1" font-size="17">focus let playback resume.</text>
+    </g>
+  </g>
+</svg>

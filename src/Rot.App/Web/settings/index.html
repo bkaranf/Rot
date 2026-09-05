@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Rot | Settings</title>
+    <link rel="stylesheet" href="../common/theme.css">
+    <link rel="stylesheet" href="./settings.css">
+  </head>
+  <body>
+    <section class="settings-window" aria-label="Rot Settings">
+      <header id="drag-header" class="settings-header">
+        <div class="settings-header-inner">
+          <div class="settings-brand">
+            <img class="settings-logo" src="../assets/icon-color.png" width="32" height="32" alt="">
+            <h1>Settings</h1>
+          </div>
+          <button id="close-button" class="icon-button icon-button--danger" type="button"
+            data-no-drag title="Close Settings" aria-label="Close Settings">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M5 5l10 10M15 5L5 15"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="settings-scroll">
+        <div class="settings-column">
+          <section class="settings-section" aria-labelledby="player-heading">
+            <h2 id="player-heading" class="section-label">Playback</h2>
+            <div class="settings-group">
+              <div class="settings-row settings-row--range">
+                <div class="settings-control-copy">
+                  <strong>Volume</strong>
+                  <output id="volume-label" class="control-value" aria-live="polite">75%</output>
+                </div>
+                <input id="volume-slider" class="range" type="range" min="0" max="100" step="1" value="75"
+                  aria-label="Volume">
+              </div>
+              <label class="settings-row">
+                <span>
+                  <strong>Mute sound</strong>
+                  <small>Keep videos quiet.</small>
+                </span>
+                <input id="muted-toggle" class="toggle" type="checkbox">
+              </label>
+              <label class="settings-row">
+                <span>
+                  <strong>Auto-resume in training</strong>
+                  <small>Pick up where you left off after a match.</small>
+                </span>
+                <input id="auto-restore-toggle" class="toggle" type="checkbox">
+              </label>
+            </div>
+            <p id="player-message" class="message settings-inline-message" role="status" aria-live="polite" aria-atomic="true"></p>
+          </section>
+
+          <section class="settings-section" aria-labelledby="appearance-heading">
+            <h2 id="appearance-heading" class="section-label">Appearance</h2>
+            <div class="settings-group">
+              <div class="settings-row settings-row--stacked">
+                <span>
+                  <strong>Player size</strong>
+                  <small>Choose the video window size.</small>
+                </span>
+                <div class="preset-grid" role="group" aria-label="Player size">
+                  <button type="button" data-size="compact" aria-pressed="false">
+                    <span class="size-preview size-preview--compact" aria-hidden="true"></span>
+                    <span>Compact</span>
+                  </button>
+                  <button type="button" data-size="medium" aria-pressed="false">
+                    <span class="size-preview size-preview--medium" aria-hidden="true"></span>
+                    <span>Medium</span>
+                  </button>
+                  <button type="button" data-size="large" aria-pressed="false">
+                    <span class="size-preview size-preview--large" aria-hidden="true"></span>
+                    <span>Large</span>
+                  </button>
+                </div>
+              </div>
+              <div class="settings-row settings-row--stacked">
+                <span>
+                  <strong>Player opacity</strong>
+                  <small id="opacity-description">Lower values let more of the game show through.</small>
+                </span>
+                <div class="segmented-control" role="group" aria-label="Player opacity">
+                  <button type="button" data-opacity="1" aria-pressed="false">100%</button>
+                  <button type="button" data-opacity="0.85" aria-pressed="false">85%</button>
+                  <button type="button" data-opacity="0.7" aria-pressed="false">70%</button>
+                  <button type="button" data-opacity="0.55" aria-pressed="false">55%</button>
+                </div>
+              </div>
+              <div class="settings-action-row">
+                <span>
+                  <strong>Window positions</strong>
+                </span>
+                <button id="reset-layout-button" class="text-button" type="button">Reset positions</button>
+              </div>
+            </div>
+            <p id="appearance-message" class="message settings-inline-message" role="status" aria-live="polite" aria-atomic="true"></p>
+          </section>
+
+          <section class="settings-section" aria-labelledby="pass-through-heading">
+            <h2 id="pass-through-heading" class="section-label">Mouse controls</h2>
+            <div id="pass-through-group" class="settings-group pass-through-group">
+              <label class="settings-row">
+                <span>
+                  <strong>Click through Player</strong>
+                  <small id="pass-through-description">Off: the Player accepts mouse input.</small>
+                </span>
+                <input id="pass-through-toggle" class="toggle" type="checkbox"
+                  aria-describedby="pass-through-description pass-through-recovery">
+              </label>
+              <div id="pass-through-recovery" class="recovery-row" hidden>
+                <span>Recovery shortcut</span>
+                <kbd id="pass-through-hotkey">Ctrl+Shift+P</kbd>
+              </div>
+              <aside id="hotkey-failure-notice" class="settings-notice settings-notice--warning hotkey-failure-notice" role="alert" hidden>
+                <strong id="hotkey-failure-heading">Shortcut unavailable</strong>
+                <ul id="hotkey-failure-list" class="settings-detail-list"></ul>
+              </aside>
+            </div>
+            <p id="pass-through-message" class="message settings-inline-message" role="status" aria-live="polite" aria-atomic="true"></p>
+          </section>
+
+          <section class="settings-section settings-section--help" aria-labelledby="help-heading">
+            <h2 id="help-heading" class="section-label">Help</h2>
+            <details id="help-details" class="settings-details">
+              <summary>Connection &amp; troubleshooting</summary>
+              <div class="settings-details-body">
+                <div class="connection-status-row">
+                  <div>
+                    <strong id="detection-heading">Rocket League</strong>
+                    <small id="detection-message">Waiting for the read-only local Stats API.</small>
+                  </div>
+                  <output id="detection-status" class="status-value" aria-live="polite">
+                    <span id="detection-dot" class="status-dot" aria-hidden="true"></span>
+                    <span id="detection-label">Disconnected</span>
+                  </output>
+                </div>
+                <div class="settings-action-row settings-action-row--help">
+                  <span>
+                    <strong>Stats API configuration</strong>
+                    <small>Check the receive-only local settings.</small>
+                  </span>
+                  <button id="repair-stats-button" class="secondary-button" type="button">Check settings</button>
+                </div>
+                <aside id="restart-warning" class="settings-notice settings-notice--warning" hidden>
+                  Restart Rocket League so its repaired Stats API settings can take effect.
+                </aside>
+                <aside id="borderless-warning" class="settings-notice settings-notice--warning" hidden>
+                  Use Borderless or Windowed mode. An ordinary Windows player cannot stay above exclusive fullscreen.
+                </aside>
+                <p id="detection-action-message" class="message" role="status" aria-live="polite" aria-atomic="true"></p>
+                <aside id="web-recovery-notice" class="settings-notice settings-notice--warning" hidden>
+                  <p id="web-recovery-message" role="status" aria-live="polite"></p>
+                  <button id="web-recovery-button" class="secondary-button" type="button" hidden>Retry player</button>
+                </aside>
+                <p class="settings-detail-note">Rot resumes only after Rocket League verifies Training again. It stays hidden and paused while the game is closed, in the background, or outside verified Training.</p>
+                <details id="player-capabilities-details" class="settings-details settings-details--nested">
+                  <summary>Player control status</summary>
+                  <div id="player-capabilities-status" class="capability-status" role="status"></div>
+                  <p id="player-capabilities-reason" class="settings-detail-note"></p>
+                </details>
+              </div>
+            </details>
+            <details id="hotkey-details" class="settings-details">
+              <summary>Keyboard shortcuts</summary>
+              <div id="hotkey-list" class="settings-detail-list"></div>
+              <div id="hotkey-editor" class="hotkey-editor" hidden>
+                <p id="hotkey-capture-hint" class="settings-detail-note" role="status" aria-live="polite">
+                  Press Ctrl, Alt, or Win with a letter, number, function, arrow, or navigation key.
+                </p>
+                <div class="hotkey-editor-actions">
+                  <button id="hotkey-apply-button" class="secondary-button" type="button" disabled>Apply</button>
+                  <button id="hotkey-cancel-button" class="text-button" type="button">Cancel</button>
+                </div>
+                <p id="hotkey-edit-message" class="message settings-inline-message" role="status" aria-live="polite" aria-atomic="true"></p>
+              </div>
+              <div class="hotkey-defaults-row">
+                <button id="hotkey-defaults-button" class="text-button" type="button">Restore defaults</button>
+              </div>
+            </details>
+            <details id="about-details" class="settings-details settings-section--about">
+              <summary>
+                <span id="about-heading">About Rot</span>
+                <output id="about-version" class="about-version">Version 2.1.0</output>
+              </summary>
+              <div class="about-build">
+                <p id="about-revision" class="settings-detail-note">Revision unavailable</p>
+              </div>
+              <div class="settings-update-console">
+                <div class="settings-action-row settings-action-row--update">
+                  <span>
+                    <strong>Updates</strong>
+                    <small>Check manually when you want to look for a newer release.</small>
+                  </span>
+                  <div class="settings-update-actions">
+                    <button id="check-updates-button" class="secondary-button" type="button">Check for updates</button>
+                    <button id="install-update-button" class="secondary-button" type="button" disabled>Install update</button>
+                  </div>
+                </div>
+                <p id="update-message" class="message settings-inline-message" role="status" aria-live="polite" aria-atomic="true"></p>
+              </div>
+              <div class="project-links" role="group" aria-label="Project links">
+                <button id="project-repository-button" class="text-button" type="button">Project</button>
+                <button id="project-releases-button" class="text-button" type="button">Releases</button>
+                <button id="project-help-button" class="text-button" type="button">Help</button>
+              </div>
+              <p class="browse-limitation">Browse is signed out. YouTube shows general recommendations, not your subscriptions, history, or Watch Later. YouTube Premium does not apply, so ads will play.</p>
+            </details>
+          </section>
+        </div>
+      </main>
+    </section>
+    <script type="module" src="./settings.js"></script>
+  </body>
+</html>

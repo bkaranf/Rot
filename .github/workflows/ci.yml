@@ -1,0 +1,55 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+      - name: Restore
+        run: dotnet restore Rot.sln
+      - name: Format
+        run: dotnet format Rot.sln --verify-no-changes --no-restore
+      - name: Build
+        run: dotnet build Rot.sln -c Release --no-restore
+      - name: Ensure WebView2 test runtime
+        shell: pwsh
+        run: |
+          $runtimeKeys = @(
+            'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}',
+            'HKCU:\Software\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}'
+          )
+          $versions = @($runtimeKeys | ForEach-Object {
+            (Get-ItemProperty -LiteralPath $_ -Name pv -ErrorAction SilentlyContinue).pv
+          } | Where-Object { $_ -and $_ -ne '0.0.0.0' })
+          if ($versions.Count -eq 0) {
+            $setupPath = Join-Path $env:RUNNER_TEMP 'Rot-WebView2-Setup.exe'
+            Invoke-WebRequest 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -OutFile $setupPath
+            $signature = Get-AuthenticodeSignature -LiteralPath $setupPath
+            if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'O=Microsoft Corporation') {
+              throw 'The WebView2 bootstrapper signature could not be verified.'
+            }
+            $setup = Start-Process -FilePath $setupPath -ArgumentList '/silent','/install' -WindowStyle Hidden -PassThru -Wait
+            if ($setup.ExitCode -ne 0) { throw "WebView2 setup failed: $($setup.ExitCode)" }
+          }
+      - name: Native tests
+        run: dotnet test Rot.sln -c Release --no-build
+      - name: Browser logic tests
+        run: node --test
+      - name: Repository contracts
+        run: node scripts/check-repository.mjs
+      - name: Portable package
+        run: ./scripts/publish.ps1 -DotNet dotnet
