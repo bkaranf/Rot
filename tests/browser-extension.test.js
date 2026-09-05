@@ -117,7 +117,7 @@ test("manifest stays minimal and carries a stable public key", async () => {
   assert.deepEqual(manifest.permissions, ["activeTab", "nativeMessaging"]);
   assert.equal(manifest.host_permissions, undefined);
   assert.equal(manifest.content_scripts, undefined);
-  assert.equal(manifest.version, "2.1.0");
+  assert.equal(manifest.version, "2.1.1");
   assert.deepEqual(manifest.action.default_icon, {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",

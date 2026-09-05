@@ -64,7 +64,7 @@ export const DEFAULT_STATE = Object.freeze({
   }),
   resume: null,
   runtime: Object.freeze({
-    version: "2.1.0",
+    version: "2.1.1",
     revision: "",
     detectionState: "disconnected",
     detectionAvailable: false,
@@ -77,8 +77,8 @@ export const DEFAULT_STATE = Object.freeze({
     hotkeyBindings: Object.freeze({ ...DEFAULT_HOTKEY_BINDINGS }),
     hotkeyDefaults: Object.freeze({ ...DEFAULT_HOTKEY_BINDINGS }),
     update: Object.freeze({
-      currentVersion: "2.1.0",
-      latestVersion: "2.1.0",
+      currentVersion: "2.1.1",
+      latestVersion: "2.1.1",
       isUpdateAvailable: false,
       message: "",
       busy: false,

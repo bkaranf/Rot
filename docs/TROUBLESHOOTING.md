@@ -45,9 +45,9 @@ same automatic mute, pause, and hide safety path. An event without a usable matc
 can refresh liveness without changing the last recognized state.
 
 With Rocket League focused, Player shortcuts remain available for manual playback
-while detection is disconnected or connected but waiting for verified training. This
+while detection is disconnected or connected before verified training. This
 fallback does not verify training. When online play is detected, Show or hide can
-reveal only a paused, muted warning. Automatic resume still waits for fresh local
+reveal only a paused, muted warning. Automatic resume still requires fresh local
 training evidence and current game and focus checks.
 
 ## A shortcut does not work
@@ -70,6 +70,50 @@ your account, cookies or YouTube Premium benefits into Rot.
 Some videos cannot be embedded or require an account or age verification. Use the
 player's **Open on YouTube** action to watch those in your normal browser. YouTube
 controls ads and playback quality. Browse itself is always muted.
+
+## Native host registration fails
+
+The native host is required for **Send to Rot**. A successful registration run
+prints `HostName`, `ExtensionId`, `ManifestPath`, and `Browsers`, then this
+check returns `True`:
+
+```powershell
+Test-Path -LiteralPath (Join-Path $env:LOCALAPPDATA 'Rot\BrowserHost\com.rot.send_to_rot.json') -PathType Leaf
+```
+
+If the script reports access denied, `WriteAllText` cannot open the manifest, or
+the check returns `False`, inspect the expected path:
+
+```powershell
+$hostDirectory = Join-Path $env:LOCALAPPDATA 'Rot\BrowserHost'
+Get-Item -LiteralPath $hostDirectory -Force -ErrorAction SilentlyContinue |
+  Select-Object FullName, PSIsContainer, Length
+```
+
+The `v2.1.0` registration script can leave a zero-byte **file** at that path
+when the directory did not exist. The `v2.1.1` script creates the directory and
+rejects an existing file. Do not delete the failed file or rerun the `v2.1.0`
+script after manually creating a directory.
+
+From the matching `v2.1.1` or later `Rot-win-x64` folder, preserve the failed
+file by moving it aside, then rerun the registration script:
+
+```powershell
+$hostDirectory = Join-Path $env:LOCALAPPDATA 'Rot\BrowserHost'
+if (Test-Path -LiteralPath $hostDirectory -PathType Leaf) {
+    $quarantinePath = "$hostDirectory.failed-file-$([guid]::NewGuid().ToString('N'))"
+    Move-Item -LiteralPath $hostDirectory -Destination $quarantinePath
+    Write-Host "Preserved failed path at $quarantinePath"
+}
+powershell -ExecutionPolicy Bypass -File .\scripts\install-browser-host.ps1
+Test-Path -LiteralPath (Join-Path $env:LOCALAPPDATA 'Rot\BrowserHost\com.rot.send_to_rot.json') -PathType Leaf
+```
+
+Run those commands from the matching extracted `Rot-win-x64` folder. The final
+`Test-Path` result must be `True`; then load the matching `browser-extension`
+folder in Chrome or Edge. The `v2.1.0` app and preferences remain usable;
+moving the failed file preserves it for inspection and does not remove
+`%LOCALAPPDATA%\Rot` data.
 
 ## A save fails or a layout is off screen
 
